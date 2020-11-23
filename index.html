@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Detonic</title>
+	<link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/it.js"></script>
+    <script type="text/javascript" src="js/countries.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	
+    <script type="text/javascript" src="js/translater.js"></script>
+    <script type="text/javascript" src="js/lastpacknotify.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	    <!-- begin delivery-block -->
+		<style>
+			.delivery-wrapper {
+			  position: fixed;
+			  display: flex;
+			  z-index: 10000;
+			  justify-content: center;
+			  top: 0;
+			  left: 0;
+			}
+			.delivery-info {
+			  display: flex;
+			  position: relative;
+			  background-color: #ffffffde;
+			  align-items: center;
+			  text-align: center;
+			  border: 1px solid black;
+			  border-top: 0px !important;
+			  border-radius: 0px 0px 10px 10px;
+			  width: 80%;
+			  margin: 0 auto;
+			  padding: 10px;
+			}
+			@media (max-width: 800px) {
+			  .delivery-info {
+				width: 100%;
+				font-size: 12px;
+			  }
+			  .delivery-info > svg {
+				width: 200px;
+				height: 150px;
+			  }
+			}
+			.delivery_close_btn {
+			  position: absolute;
+			  color: red;
+			  top: -10px;
+			  right: 0;
+			  margin: 5px;
+			  font-size: 30px;
+			  cursor: pointer;
+			}
+		  </style>
+	  
+		  <div class="delivery-wrapper">
+			<div class="delivery-info" style="margin: 0; padding: 0;">
+			  <span class="delivery_close_btn">&#215;</span>
+			  <svg xmlns="http://www.w3.org/2000/svg" style="padding-left: 10px;" id="Capa_1" enable-background="new 0 0 484.559 484.559" height="70" viewbox="0 0 484.559 484.559" width="100">
+				<g>
+				  <g id="XMLID_107_">
+					<g>
+					  <path d="m484.426 222.033c1.77 22.9-14.34 43.23-35.97 45.4-16.56 1.66-31.54-7.81-38.46-22.6l-19.63 1.73-14.82 7.15c-3.39 1.63-5.67 4.87-6.19 8.59-1.4 10.03-3.94 19.69-7.47 28.87-1.2 3.11-.99 6.58.64 9.48l5.28 9.44 14.68 9.85c7.74-2.96 16.75-2.25 24.16 2.72 12.56 8.43 15.57 25.78 6.23 37.99-8.04 10.52-22.99 13.41-34.37 6.65-7.25-4.3-11.63-11.44-12.7-19.07l-16.27-10.91-10.24-1.25c-3.52-.43-7.02.78-9.58 3.23-8.64 8.23-18.4 15.3-29.01 20.96-3.57 1.9-5.86 5.55-6.11 9.58l-1.3 20.74 6.44 25.55c10.96 3.06 20.02 11.75 23 23.57 4.5 17.87-6.6 36-24.7 40.03-16.33 3.64-33.08-5.88-38.27-21.79-4.04-12.42-.33-25.26 8.21-33.65l-6.47-25.7-9.99-16.06c-2.68-4.31-7.42-6.86-12.5-6.85-.03 0-.05 0-.08 0-8.75 0-17.31-.87-25.59-2.5-4.93-.98-10.02.58-13.48 4.23l-13.2 13.93-14.78 30.66c3.46 7.03 3.77 15.52.11 23.13-6.58 13.64-23.36 19.06-36.77 11.52-11.48-6.47-16.45-20.75-11.45-32.95 3.41-8.32 10.48-13.88 18.48-15.74l14.87-30.86 2.92-20.71c.53-3.82-.93-7.67-3.93-10.09-11.83-9.6-21.97-21.19-29.9-34.27-1.97-3.25-5.51-5.22-9.31-5.25l-20.68-.2-22.64 7.12c-1.59 14.08-11.23 26.59-25.61 31.11-19.32 6.08-39.9-4.54-46.17-23.74-6.27-19.19 4.32-40.18 23.49-46.52 13.42-4.44 27.52-.75 37.06 8.32l24.03-7.56 17.55-12.51c2.61-1.85 4-4.95 3.74-8.13-.29-3.53-.44-7.09-.44-10.69 0-19.56 4.3-38.13 11.98-54.83 1.12-2.45 1.09-5.27-.09-7.69l-5.2-10.63-14.11-10.65c-7.9 2.53-16.85 1.32-23.97-4.05-12.08-9.12-14.12-26.61-4.12-38.28 8.61-10.05 23.7-12.11 34.69-4.73 7 4.7 10.98 12.06 11.62 19.74l15.64 11.8 15.76 2.81c11.47-10.65 24.84-19.28 39.53-25.33l3.7-22.48-4.67-23.22c-13.82-3.56-25.04-14.15-28.06-28.27-4.26-19.95 9.45-39.38 30.63-43.39 21.17-4.01 41.79 8.9 46.05 28.85 3.19 14.93-3.68 29.56-16.22 37.66l4.41 21.9 10.83 17.28c.71 1.13 1.95 1.81 3.28 1.81h.02c24.8 0 48.02 6.9 67.85 18.88 1.09.65 2.43.74 3.58.2l16.96-7.86 19.8-21.42c-1.19-7.68 1-15.82 6.69-21.97 10.28-11.11 27.88-11.39 38.5-.28 9.31 9.75 9.67 25.3.83 35.48-5.72 6.59-13.93 9.63-21.95 9.03l-19.8 21.42-6.43 17.3c-.45 1.2-.25 2.54.5 3.58 7.81 10.72 14.04 22.66 18.34 35.48 1.19 3.52 3.99 6.26 7.57 7.27l16.1 4.51 20.92-1.85c5.13-14.79 17.94-25.98 33.67-27.56 21.63-2.17 40.6 14.64 42.36 37.54z" fill="#eb5569"/>
+					</g>
+				  </g>
+				  <g id="XMLID_8_">
+					<g>
+					  <circle cx="238.936" cy="243.983" fill="#f58a97" r="97.52"/>
+					</g>
+				  </g>
+				  <path d="m171.14 243.983c0-48.807 35.852-89.238 82.658-96.395-4.846-.741-9.809-1.125-14.862-1.125-53.86 0-97.52 43.66-97.52 97.52s43.66 97.52 97.52 97.52c5.053 0 10.016-.384 14.862-1.125-46.805-7.158-82.658-47.589-82.658-96.395z" fill="#f07281"/>
+				  <g fill="#eb5569">
+					<circle cx="74.853" cy="38.921" r="27.771"/>
+					<circle cx="67.262" cy="404.986" r="18.343"/>
+					<circle cx="404.051" cy="435.118" r="27.018"/>
+					<circle cx="209.002" cy="217.089" r="25.189"/>
+					<circle cx="229.222" cy="295.328" r="17.145"/>
+					<circle cx="283.058" cy="243.983" r="14.397"/>
+				  </g>
+				</g>
+			  </svg>
+			  <p style="text-align: initial; margin: 0; padding-left: 20px; padding-right: 20px;" class="delivery-text">
+				<b style="color: red;">COVID-19 : </b>
+				Gentili clienti, non preoccupatevi! Abbiamo preso tutte le precauzioni
+				possibili per garantire la vostra sicurezza: i nostri corrieri
+				utilizzano guanti e maschere monouso, mantengono una distanza di
+				sicurezza durante la consegna del pacco, per minimizzare i tempi di
+				contatto con i clienti. Tutti i nostri pacchetti sono trattati con
+				disinfettanti.
+			  </p>
+			</div>
+			<script>
+			  "use strict";
+			  const deliveryBlock = document.querySelector(".delivery-wrapper");
+			  const btn_close = document.querySelector(".delivery_close_btn");
+			  btn_close.addEventListener("click", () => {
+				deliveryBlock.remove();
+			  });
+			</script>
+		  </div>
+		  <!-- end -->
+<div class="js__countryblock" data-country="es">
+	<div class="section header">
+		<div class="section_content">
+			<div class="header__left">
+				<div class="header__logo">
+                    <div class="product_logo"></div><p class="lt1">Innovazione e rivoluzione nella cardiologia</p></div><div class="header__product">
+					<div class="product__image"></div>
+                <div class="product__individual_price"><span class="lt2">Solo ora!<br>Il vostro sconto personale:</span><span class="highlighted">-50%!</span></div>
+                <div class="product__standart_price"><span class="lt3">Prezzo in farmacia:</span><span class="standart_price__old price_old">2830 руб</span>
+                        <span class="standart_price__sale price_main">999 руб</span>
+					</div>
+				</div>
+				<div class="header__products_left">
+					<span class="products_left__text lt4">In offerta rimangono solo:</span>
+					<span class="products_left__value lastpack">60</span>
+					<span class="products_left__text_right lt5">confezioni</span>
+				</div>
+			</div>
+			<div class="header__right">
+				<div class="header__properties">
+					<div class="properties__caption">
+                        <span class="highlighted lt6"></span><p class="lt7"></p>!
+					</div>
+					<ul class="properties_list">
+                        <li class="properties_list__item days"><span class="lt8"> La durata del ciclo di trattamento consigliata dal produttore è </span><span class="highlighted lt9">di minimo 1,5-2 mesi</span></li>
+						<li class="properties_list__item protect lt10">Difende cuore e vasi sanguigni dagli sforzi eccessivi</li>
+						<li class="properties_list__item health lt11">Regola la pressione in maniera completamente naturale</li>
+					</ul>
+				</div>
+				<form action="https://wapi.leadbit.com" method="POST" class="header__form form order_form">
+					<div class="form_row">
+						<label class="control-label lt12">Scegliete la nazione:</label>
+						<div class="control-select_holder">
+							<select class="control-select country_select" name="country"></select>
+						</div>
+					</div>
+					<div class="form_row">
+						<label class="control-label lt13">Inserite il nome:</label>
+						<input class="control-input" type="text" name="name" required>
+					</div>
+					<div class="form_row">
+						<label class="control-label lt14">Inserite il numero di telefono:</label>
+						<input class="control-input" type="text" name="phone" required>
+					</div>
+					<input type="hidden" name="flow_hash" value="zTYk">
+      <input type="hidden" name="country_code" value="IT">
+      <input type="hidden" name="landing" value="http://sudalen.com/zTYk">
+
+      <input type="hidden" name="sid1" value="ads">
+      <input type="hidden" name="sid2" value="vova">
+      <input type="hidden" name="sid3" value="vova">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+					<button class="form_button btn btn-green lt15">Ordinare</button>
+				</form>
+				<div class="header__countdown">
+					<div class="countdown__caption lt16">fino alla fine dell’offerta:</div>
+					<div class="countdown_time landing__countdown">
+						<span>05</span>
+						<span>05</span>
+						<span>05</span>
+					</div>
+					<div class="countdown_names">
+                        <span class="lt17">ore</span>
+						<span class="lt18">minuti</span>
+						<span class="lt19">secondi</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section wrong_methods">
+		<div class="section_content">
+			<div class="wrong_methods__caption"><span class="lt20">Continuate tutt’ora a combattere l’ipertensione</span><span class="highlighted lt21">in maniera scorretta?</span></div>
+            <div class="wrong_methods__problem lt22">L’abbassamento artificiale della pressione arteriosa con le pillole non fa che peggiorare il problema!</div>
+			<div class="wrong_methods__vessels lt23">I preparati per abbassare la pressione trasformano i vasi sanguigni delle persone in vasi sanguigni di anziani, e comportano gravi effetti collaterali!</div>
+            <div class="wrong_methods__solution"><span class="lt24">Per liberarsi in maniera efficace e sicura dell’ipertensione è necessario un preparato che </span><span class="highlighted lt25">MANTERRA’ continuamente la pressione nella norma, </span><span class="lt26">aiutando allo stesso modo l’organismo a combattere la causa dell’aumento di pressione.</span>
+			</div>
+		</div>
+	</div>
+	<div class="section solution">
+		<div class="section_content">
+			<div class="solution__logo">
+				<div class="product_logo_big"></div>
+                <p class="lt27">contro le malattie del cuore e dei vasi sanguigni!</p></div>
+            <div class="solution__phrase"><span class="lt28">"Elimina la causa, e scomparirà anche la malattia!"</span><span class="phrase__author lt29">Ippocrate</span></div>
+			<div class="solution__product">
+				<div class="product__image"></div>
+				<div class="product__descr">
+					
+					<p class="lt32">L’eliminazione delle malattie di carattere ipertensivo con Detonic avviene attraverso la stabilizzazione della pressione sanguigna e l’eliminazione delle cause principali delle malattie di questo tipo.</p></div>
+				<div class="product__certificates"></div></div></div></div>
+	<div class="section technology">
+		<div class="section_content">
+            <div class="technology__caption"><span class="lt33">Tecnologi unica </span><span class="highlighted lt34">Vasodilat</span></div>
+            <div class="technology__descr"><span class="lt35">L’Ipocapnia è una continua mancanza di ossigeno nel sangue</span><span class="highlighted lt36"> è la prima causa dell’ipertensione arteriosa</span><span class="37"> — continua situazione di contrazione innaturale (spasmi) delle valvole e delle piccole arterie.</span></div>
+			<ul class="technology_about">
+				<li class="technology_about__item tech_1">
+                    <span class="highlighted lt38">Abbassamento della concentrazione d’ossigeno </span><span class="lt39">nel sangue arterioso.</span></li>
+                <li class="technology_about__item tech_2"><span class="lt40">Si attiva un particolare meccanismo di difesa nell’organismo </span><span class="highlighted lt41">il vaso sanguigno si contrae di colpo.</span>
+					<div class="technology_about__item_extra lt42">AVVIENE UNO SPASMO! LA PRESSIONE CRESCE IN MANIERA ESPONENZIALE!</div></li>
+                <li class="technology_about__item tech_3"><span class="lt43">Con l’aiuto della tecnologia Vasodilat Detonic</span><span class="highlighted lt44"> aiuta a mantenere la concentrazione d’ossigeno necessaria </span><span class="lt45">nel sangue.</span></li>
+				<li class="technology_about__item tech_4"><span class="lt46">Più ossigeno c’è nel sangue</span><span class="highlighted lt47"> minore è la pressione sui vasi sanguigni.</span>
+                    <div class="technology_about__item_extra"><span class="highlighted lt48">GLI SPASMI DIMINUISCONO!</span><span class="lt49">LA PRESSIONE TORNA NELLA NORMA</span></div></li></ul></div></div>
+	<div class="section reasons">
+		<div class="section_content">
+            <div class="reasons__caption"><span class="highlighted lt50">ELIMINA LE CAUSE PRINCIPALI</span><span class="lt51">DELLA MANCANZA DI OSSIGENO</span></div>
+			<div class="reasons__descr lt52">La pressione alta è una reazione necessaria dell’organismo contro:</div>
+			<div class="reasons__tonometer_image"></div>
+			<ul class="reasons_list">
+                <li class="reasons_list__item">
+					<div class="reason_item__caption lt53">Stress</div>
+                    <span class="highlighted lt54"></span><span class="lt55"> </span>
+					<div class="reason_item__contains">
+						<div class="contains_item rodiola">
+							<span class="contains_item__image"></span>
+							<span class="contains_item__name lt56">Estratto di foglie di aloe</span>
+                            <span>Contiene una grande quantità di vitamine, acidi, e componenti attivi. Super efficace nella cura delle malattie del cuore. Aiuta ad eliminare il nervosismo, migliora il lavoro del cuore, migliora la circolazione sanguigna, scioglie gli ammassi sanguigni e rinforza la capacità di lasciar passare il sangue dei vasi sanguigni.</span>
+						</div>
+						
+						
+					</div>
+				</li>
+				<li class="reasons_list__item">
+					<div class="reason_item__caption lt59">Spasmi dei vasi sanguigni</div>
+                    	<div class="reason_item__contains">
+						<div class="contains_item boyarishnik">
+							<span class="contains_item__image"></span>
+							<span class="contains_item__name lt62">Estratto di frutti del biancospino</span>
+                            <span class="lt63">Tonifica i muscoli del cuore, ha un’azione che allarga i vasi sanguigni, previene la formazione di placche e migliora i valori del sangue. Stabilizza il livello di colesterolo nel sangue.</span>
+						</div>
+						<div class="contains_item lizin">
+							<span class="contains_item__image"></span>
+							<span class="contains_item__name lt64">Estratto di leonora</span>
+                            <span class="lt65">Abbassa la pressione sanguigna nei tessuti e negli apparati dell’organismo, aiuta ad eliminare i liquidi in eccesso.</span>
+						</div>
+						<div class="contains_item biotin">
+							<span class="contains_item__image"></span>
+							<span class="contains_item__name lt66">Estratto di semi di zucca</span>
+                            <span class="lt67">Necessaria per la formazione di globuli rossi e anticorpi, per far respirare le cellule e per farle crescere .</span>
+						</div>
+					</div>
+				</li>
+				<li class="reasons_list__item">
+					<div class="reason_item__caption lt68">Sindrome metabolica</div><span class="highlighted"></span>
+					<div class="reason_item__contains">
+						<div class="contains_item ginkgo">
+							<span class="contains_item__image"></span>
+							<span class="contains_item__name lt69">Estratto di chaga</span>
+                            <span class="lt70">Componente senza il quale il sistema nervoso non può funzionare stabilmente, ha effetti rilassanti. Migliora la circolazione sanguigna e  partecipa all’Emopoiesi.</span>
+						</div>
+						</div>
+				</li>			
+			</ul>
+		</div>
+	</div>
+	
+			
+	
+	
+	
+	<div class="section advantages">
+		<div class="section_content">
+			<div class="advantages__left">
+				<div class="advantages__stamp"></div>
+				<ul class="advantages_list">
+					<li class="advantages_list__item lt112">Detonic è totalmente sicuro</li>
+					<li class="advantages_list__item lt113">Non ha effetti collaterali</li>
+					<li class="advantages_list__item lt114">Risolve il problema principale dell’ipertensione</li>
+					<li class="advantages_list__item lt115">E’ compatibile con persone di qualsiasi età</li>
+				</ul>
+			</div>
+			<div class="advantages__right">
+				<div class="advantages__price">
+                    <span class="lt3">Prezzo in farmacia:</span>
+					<span class="standart_price__old price_old">2830 руб</span>
+					<span class="standart_price__sale price_main">999 руб</span>
+				</div>
+				<a href="#form" class="btn btn-orange advantages__order scrollto lt15">Ordinare</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="section order_steps">
+		<div class="section_content">
+			<div class="order_steps__caption">
+                <span class="lt125">Come ordinare </span><span class="highlighted">Detonic?</span>
+			</div>
+			<ul class="order_steps__list">
+				<li class="order_step">
+					<div class="order_step__image"></div>
+					<span class="highlighted lt126">Primo passo</span>
+                    <span class="lt127">Compilate il modulo d’ordine più in basso</span>
+				</li>
+				<li class="order_step">
+					<div class="order_step__image"></div>
+					<span class="highlighted lt128">Secondo passo</span>
+                    <span class="lt129">Attendete la chiamata dell’operatore</span>
+				</li>
+				<li class="order_step">
+					<div class="order_step__image"></div>
+					<span class="highlighted lt130">Terzo passo</span>
+                    <span class="lt131">Ci sono due modalità di pagamento: pagamento anticipato e pagamento in contrassegno</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="section fake">
+		<div class="section_content">
+			<div class="fake__caption">
+                <span class="lt132">EVITATE I FALSI!</span>
+				<div class="product_logo"></div>
+			</div>
+			<div class="fake__descr">
+                <span class="lt133">Per evitare falsi e analoghi di bassa qualità effettuate l’acquisto solo sul sito in questione .</span>
+				<span class="highlighted lt134">100% GARANZIA DI QUALITA’!</span>
+			</div>
+			<div class="product__image"></div>
+		</div>
+	</div>
+	<div class="section footer">
+		<div class="section_content">
+			<div class="footer__caption">
+				<span class="highlighted lt135">NON LASCIATE DA PARTE LA BATTAGLIA CONTRO L’IPERTENSIONE FINCHE’ SIETE IN TEMPO!</span>
+                <span class="lt136">SCONFIGGETE IL MALESSERE GIA’ OGGI!</span>
+			</div>
+			<div class="footer__left">
+				<div class="footer__product">
+					<div class="product__image"></div>
+					<div class="product__individual_price">
+                        <span class="lt137">Il prezzo è più basso grazie all’azione dell’ ASSOCIAZIONE DEI CARDIOLOGI ITALIANI </span>
+						<span class="highlighted">-50%!</span>
+					</div>
+					<div class="product__standart_price">
+                        <span class="lt3">Prezzo in farmacia:</span>
+						<span class="standart_price__old price_old">2830 руб</span>
+						<span class="standart_price__sale price_main">999 руб</span>
+					</div>
+					<div class="footer__countdown">
+						<div class="countdown__caption lt16">fino alla fine dell’offerta:</div>
+						<div class="countdown_time landing__countdown">
+							<span>05</span>
+							<span>05</span>
+							<span>05</span>
+						</div>
+						<div class="countdown_names">
+							<span class="lt17">ore</span>
+							<span class="lt18">minuti</span>
+							<span class="lt19">secondi</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer__right" id="form">
+				<form action="https://wapi.leadbit.com" method="POST" class="footer__form form order_form">
+					<div class="form_row">
+						<label class="control-label lt12">Scegliete la nazione:</label>
+						<div class="control-select_holder">
+							<select class="control-select country_select" name="country"></select>
+						</div>
+					</div>
+					<div class="form_row">
+						<label class="control-label lt13">Inserite il nome:</label>
+						<input class="control-input" type="text" name="name" required>
+					</div>
+					<div class="form_row">
+						<label class="control-label lt14">Inserite il numero di telefono:</label>
+						<input class="control-input" type="text" name="phone" required>
+					</div>
+					<button class="form_button btn btn-green lt15">Ordinare</button>
+					<input type="hidden" name="flow_hash" value="zTYk">
+      <input type="hidden" name="country_code" value="IT">
+      <input type="hidden" name="landing" value="http://sudalen.com/zTYk">
+
+      <input type="hidden" name="sid1" value="ads">
+      <input type="hidden" name="sid2" value="vova">
+      <input type="hidden" name="sid3" value="vova">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+					<div class="form__secure lt138">Garantiamo che i vostri dati personali saranno al sicuro!</div>
+				</form>
+			</div>
+			<div class="footer__products_left">
+                <span class="lt139">Rimangono solo:</span><span class="products_left__value lastpack">60</span><span class="lt140">confezioni</span>
+			</div>
+		</div>
+	</div>
+</div>
+    
+	<div class="section copyright">
+		<div class="section_content">
+BERNADATTE LTD, Av Ricardo J. Alfaro, Panama International       <br>   <a href="/cdn/files/Privacy Policy.html" target="_blank">Privacy Policy</a> | <a href="http://feedback-team.com" target="_blank">Report</a>
+		</div>
+	</div>
+
+</body> 
+</html>
